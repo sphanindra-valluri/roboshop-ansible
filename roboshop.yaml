@@ -33,17 +33,17 @@
       msg: "{{ ec2_output }}"
   #   when: action == "create"
 
-  # - name: create r53 records
-  #   amazon.aws.route53:
-  #     state: present
-  #     zone: "{{ domain_name }}"
-  #     record: "{{ item.item }}-{{ env }}.{{ domain_name }}" # mongodb-dev.phani.fun, frontend-dev.phani.fun
-  #     type: A
-  #     ttl: 1
-  #     value: "{{ item.instances[0].private_ip_address }}"
-  #     wait: false
-  #     overwrite: true
-  #   loop: "{{ ec2_output.results }}" # list
+  - name: create r53 records
+    amazon.aws.route53:
+      state: present
+      zone: "{{ domain_name }}"
+      record: "{{ item.item }}-{{ env }}.{{ domain_name }}" # mongodb-dev.phani.fun, frontend-dev.phani.fun
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].private_ip_address }}"
+      wait: false
+      overwrite: true
+    loop: "{{ ec2_output.results }}" # list
   #   when: action == "create"
 
   # - name: create r53 record for frontend
@@ -66,7 +66,7 @@
   #   amazon.aws.route53:
   #     state: absent
   #     zone: "{{ domain_name }}"
-  #     record: "roboshop-{{ env }}.{{ domain_name }}" # roboshop-dev.daws88s.online
+  #     record: "roboshop-{{ env }}.{{ domain_name }}" # roboshop-dev.phani.fun
   #     type: A
   #     ttl: 1
   #   loop: "{{ instances }}"
@@ -78,7 +78,7 @@
   #   amazon.aws.route53:
   #     state: absent
   #     zone: "{{ domain_name }}"
-  #     record: "{{ item }}-{{ env }}.{{ domain_name }}" # roboshop-dev.daws88s.online
+  #     record: "{{ item }}-{{ env }}.{{ domain_name }}" # roboshop-dev.phani.fun
   #     type: A
   #     ttl: 1
   #   loop: "{{ instances }}"
