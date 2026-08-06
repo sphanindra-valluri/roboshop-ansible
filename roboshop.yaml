@@ -28,9 +28,9 @@
     register: ec2_output
   #   when: action == "create"
 
-  # - name: print the output
-  #   ansible.builtin.debug:
-  #     msg: "{{ ec2_output }}"
+  - name: print the output
+    ansible.builtin.debug:
+      msg: "{{ ec2_output }}"
   #   when: action == "create"
 
   # - name: create r53 records
