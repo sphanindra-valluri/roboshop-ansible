@@ -50,7 +50,7 @@
     amazon.aws.route53:
       state: present
       zone: "{{ domain_name }}"
-      record: "roboshop-{{ env }}.{{ domain_name }}" # roboshop-dev.daws88s.online
+      record: "roboshop-{{ env }}.{{ domain_name }}" # roboshop-dev.phani.fun
       type: A
       ttl: 1
       value: "{{ item.instances[0].public_ip_address }}"
