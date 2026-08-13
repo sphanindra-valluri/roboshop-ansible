@@ -65,11 +65,9 @@
 
   - name: install dependencie
     ansible.builtin.pip:
-      name: "{{ item }}"
+      name: "PyMySQL"
       executable: pip3.9
-    loop:
-    # - cryptography
-    - PyMySQL
+ 
 
   - name: import shipping data
     community.mysql.mysql_db:
